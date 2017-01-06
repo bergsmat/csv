@@ -1,0 +1,14 @@
+Package: csv
+Type: Package
+Title: Formalized Comma Separated Variable Files
+Version: 0.1
+Date: 2017-01-06
+Author: Tim Bergsma
+Maintainer: Tim Bergsma <bergsmat@gmail.com>
+Description: Reads and writes CSV with preset arguments.
+License: GPL-3
+LazyData: TRUE
+Imports:
+Suggests:
+RoxygenNote: 5.0.1
+VignetteBuilder: knitr
