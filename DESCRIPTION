@@ -1,14 +1,14 @@
 Package: csv
 Type: Package
-Title: Formalized Comma Separated Variable Files
-Version: 0.1
-Date: 2017-01-06
+Title: Read and Write CSV Files with Selected Conventions
+Version: 0.3
+Date: 2017-02-18
 Author: Tim Bergsma
 Maintainer: Tim Bergsma <bergsmat@gmail.com>
-Description: Reads and writes CSV with preset arguments.
+Description: Reads and writes CSV with selected conventions.
+ Uses the same generic function for reading and writing to promote consistent formats.
 License: GPL-3
 LazyData: TRUE
 Imports:
 Suggests:
-RoxygenNote: 5.0.1
-VignetteBuilder: knitr
+RoxygenNote: 6.0.1

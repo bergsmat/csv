@@ -2,10 +2,10 @@
 % Please edit documentation in R/csv.R
 \name{as.csv.character}
 \alias{as.csv.character}
-\title{Treat Character as CSV}
+\title{Treat Character as CSV filename.}
 \usage{
-\method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", " ", "."),
-  strip.white = T, ...)
+\method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", "\\\\s",
+  "."), strip.white = T, ...)
 }
 \arguments{
 \item{x}{object}
@@ -22,9 +22,8 @@
 data.frame
 }
 \description{
-Treat a character string as a csv filename.
+Treat a character string as a CSV filename.
 }
 \details{
 If x is character, is length one, and is a path to a file, an attempt is made to read the file.
 }
-

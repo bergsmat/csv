@@ -2,7 +2,7 @@
 % Please edit documentation in R/csv.R
 \name{as.csv.data.frame}
 \alias{as.csv.data.frame}
-\title{Save a Data Frame as CSV}
+\title{Save a Data Frame as CSV.}
 \usage{
 \method{as.csv}{data.frame}(x, file, na = ".", quote = FALSE,
   row.names = FALSE, ...)
@@ -24,6 +24,5 @@
 invisible data.frame (x)
 }
 \description{
-Saves a data.frame as csv.
+Saves a data.frame as CSV, using selected conventions.
 }
-

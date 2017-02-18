@@ -2,8 +2,7 @@
 % Please edit documentation in R/csv.R
 \name{as.csv}
 \alias{as.csv}
-\title{Read or Write Standardized CSV
-Reads or writes CSV files in a standard way.}
+\title{Read or Write CSV Using Selected Conventions}
 \usage{
 as.csv(x, ...)
 }
@@ -13,7 +12,14 @@ as.csv(x, ...)
 \item{...}{passed arguments}
 }
 \description{
-Read or Write Standardized CSV
-Reads or writes CSV files in a standard way.
+Reads or writes CSV files in a conventional way. Generic, with methods for character and data.frame. A length-one character argument is treated as a filepath and tries to return a data.frame.  A data.frame argument is written to the specified filepath. Typically, \code{quote} and \code{row.names} are FALSE and \code{na} is ".".  When reading, white space and empty strings are treated as NA, and \code{strip.white} is TRUE.
 }
-
+\examples{
+data <- head(Theoph)
+filepath <- file.path(tempdir(),'theoph.csv')
+as.csv(data,filepath)
+as.csv(filepath)
+}
+\seealso{
+\code{\link{as.csv.character}}, \code{\link{as.csv.data.frame}}
+}
