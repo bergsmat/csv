@@ -4,8 +4,8 @@
 \alias{as.csv.character}
 \title{Treat Character as CSV}
 \usage{
-\method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", " ", "."),
-  strip.white = T, ...)
+\method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", " ", ".",
+  "NA"), strip.white = TRUE, ...)
 }
 \arguments{
 \item{x}{object}

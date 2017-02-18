@@ -17,7 +17,7 @@ as.csv <- function(x,...)UseMethod('as.csv')
 #' @param strip.white passed to read.csv
 #' @return data.frame
 #' @export
-as.csv.character <- function(x,as.is=TRUE,na.strings=c('',' ','.'),strip.white=T,...){
+as.csv.character <- function(x,as.is=TRUE,na.strings=c('',' ','.','NA'),strip.white=TRUE,...){
   stopifnot(length(x)==1)
   stopifnot(file.exists(x))
   y <- utils::read.csv(x,as.is=as.is,na.strings=na.strings,strip.white=strip.white,...)
@@ -38,7 +38,7 @@ as.csv.character <- function(x,as.is=TRUE,na.strings=c('',' ','.'),strip.white=T
 as.csv.data.frame <- function(x, file, na='.',quote=FALSE,row.names=FALSE,...){
   comma <- sapply(x,function(col) any(grepl(',',col)))
   nms <- names(comma)[comma]
-  if(length(nms) & quote)warning(
+  if(length(nms) & !quote)warning(
     'quote is false but found comma(s) in ',
     paste(nms,collapse=', ')
   )
