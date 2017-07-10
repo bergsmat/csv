@@ -50,7 +50,7 @@ as.csv.data.frame <- function(x, file, na='.',quote=FALSE,row.names=FALSE,...){
     'quote is false but found comma(s) in ',
     paste(nms,collapse=', ')
   )
-  dup <- x[duplicated(x),]
+  dup <- x[duplicated(x),,drop = FALSE]
   if(nrow(dup))warning(
     'found duplicate(s) e.g.:\n',
     paste(t(dup[1,]),collapse=', ')
