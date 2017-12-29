@@ -12,7 +12,7 @@ as.csv(x, ...)
 \item{...}{passed arguments}
 }
 \description{
-Reads or writes CSV files in a conventional way. Generic, with methods for character and data.frame. A length-one character argument is treated as a filepath and tries to return a data.frame.  A data.frame argument is written to the specified filepath. Typically, \code{quote} and \code{row.names} are FALSE and \code{na} is ".".  When reading, white space and empty strings are treated as NA, and \code{strip.white} is TRUE.
+Reads or writes CSV files in a conventional way. Generic, with methods for character and data.frame. A length-one character argument is treated as a filepath and tries to return a data.frame.  A data.frame argument is written to the specified filepath. Typically, \code{quote} and \code{row.names} are FALSE and \code{na} is ".".  When reading, white space and empty strings are treated as NA, and \code{strip.white} is TRUE. When writing, values with commas or double-quotes are double-quoted (and embedded double-quotes are doubled).
 }
 \examples{
 data <- head(Theoph)

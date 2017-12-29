@@ -5,7 +5,7 @@
 \title{Save a Data Frame as CSV.}
 \usage{
 \method{as.csv}{data.frame}(x, file, na = ".", quote = FALSE,
-  row.names = FALSE, ...)
+  auto = !quote, row.names = FALSE, ...)
 }
 \arguments{
 \item{x}{object}
@@ -16,6 +16,8 @@
 
 \item{quote}{passed to write.csv}
 
+\item{auto}{double-quote column names and row values with embedded commas or double-quotes; the latter are escaped by doubling them}
+
 \item{row.names}{passed to write.csv}
 
 \item{...}{passed arguments}
@@ -25,4 +27,17 @@ invisible data.frame (x)
 }
 \description{
 Saves a data.frame as CSV, using selected conventions.
+}
+\examples{
+x <- data.frame(
+  check.names = FALSE,
+  person = 1:3, 
+  `name, suffix` = c("Bill Smith", 'Joseph "Joe" Hancock', "Mary Laguire, DDS")
+)
+file <- tempfile()
+as.csv(x,file)
+y <- as.csv(file)
+x
+y
+
 }

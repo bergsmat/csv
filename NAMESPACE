@@ -2,4 +2,8 @@
 
 S3method(as.csv,character)
 S3method(as.csv,data.frame)
+S3method(autoquote,character)
+S3method(autoquote,default)
+S3method(autoquote,factor)
 export(as.csv)
+export(autoquote)
