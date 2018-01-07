@@ -36,8 +36,10 @@ x <- data.frame(
 )
 file <- tempfile()
 as.csv(x,file)
-y <- as.csv(file)
+y <- as.csv(file,as.is=FALSE)
+attr(y,'source')
+attr(y,'source') <- NULL
 x
 y
-
+stopifnot(identical(x,y))
 }

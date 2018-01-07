@@ -24,12 +24,13 @@ as.csv <- function(x,...)UseMethod('as.csv')
 #' @param na.strings passed to read.csv
 #' @param strip.white passed to read.csv
 #' @param check.names passed to read.csv
-#' @return data.frame
+#' @return data.frame, with attribute 'source' set to x
 #' @export
 as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.white=TRUE,check.names=FALSE,...){
   stopifnot(length(x)==1)
   stopifnot(file.exists(x))
   y <- utils::read.csv(x,as.is=as.is,na.strings=na.strings,strip.white=strip.white,check.names=check.names,...)
+  attr(y,'source') <- x
   y
 }
 
@@ -54,6 +55,8 @@ as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.
 #' file <- tempfile()
 #' as.csv(x,file)
 #' y <- as.csv(file,as.is=FALSE)
+#' attr(y,'source')
+#' attr(y,'source') <- NULL
 #' x
 #' y
 #' stopifnot(identical(x,y))

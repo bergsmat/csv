@@ -5,7 +5,7 @@
 \title{Treat Character as CSV filename.}
 \usage{
 \method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", "\\\\s", ".",
-  "NA"), strip.white = TRUE, ...)
+  "NA"), strip.white = TRUE, check.names = FALSE, ...)
 }
 \arguments{
 \item{x}{object}
@@ -16,10 +16,12 @@
 
 \item{strip.white}{passed to read.csv}
 
+\item{check.names}{passed to read.csv}
+
 \item{...}{passed arguments}
 }
 \value{
-data.frame
+data.frame, with attribute 'source' set to x
 }
 \description{
 Treat a character string as a CSV filename.
