@@ -29,3 +29,7 @@ Treat a character string as a CSV filename.
 \details{
 If x is character, is length one, and is a path to a file, an attempt is made to read the file.
 }
+\seealso{
+Other as.csv: \code{\link{as.csv.data.frame}},
+  \code{\link{as.csv}}
+}

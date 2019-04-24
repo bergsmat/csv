@@ -43,3 +43,7 @@ x
 y
 stopifnot(identical(x,y))
 }
+\seealso{
+Other as.csv: \code{\link{as.csv.character}},
+  \code{\link{as.csv}}
+}

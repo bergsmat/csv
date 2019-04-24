@@ -22,4 +22,7 @@ as.csv(filepath)
 }
 \seealso{
 \code{\link{as.csv.character}}, \code{\link{as.csv.data.frame}}
+
+Other as.csv: \code{\link{as.csv.character}},
+  \code{\link{as.csv.data.frame}}
 }

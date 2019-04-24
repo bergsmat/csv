@@ -5,6 +5,7 @@
 #' @param x object
 #' @param ... passed arguments
 #' @seealso \code{\link{as.csv.character}}, \code{\link{as.csv.data.frame}}
+#' @family as.csv
 #' @export
 #' @examples
 #' data <- head(Theoph)
@@ -25,6 +26,7 @@ as.csv <- function(x,...)UseMethod('as.csv')
 #' @param strip.white passed to read.csv
 #' @param check.names passed to read.csv
 #' @return data.frame, with attribute 'source' set to x
+#' @family as.csv
 #' @export
 as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.white=TRUE,check.names=FALSE,...){
   stopifnot(length(x)==1)
@@ -46,6 +48,7 @@ as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.
 #' @param row.names passed to write.csv
 #' @return invisible data.frame (x)
 #' @export
+#' @family as.csv
 #' @examples 
 #' x <- data.frame(
 #'   check.names = FALSE,
