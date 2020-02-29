@@ -1,6 +1,15 @@
 #' Read or Write CSV Using Selected Conventions
 #' 
-#' Reads or writes CSV files in a conventional way. Generic, with methods for character and data.frame. A length-one character argument is treated as a filepath and tries to return a data.frame.  A data.frame argument is written to the specified filepath. Typically, \code{quote} and \code{row.names} are FALSE and \code{na} is ".".  When reading, white space and empty strings are treated as NA, and \code{strip.white} is TRUE. When writing, values with commas or double-quotes are double-quoted (and embedded double-quotes are doubled).
+#' Reads or writes CSV files in a conventional way.
+#' Generic, with methods for character and data.frame.
+#' A length-one character argument is treated as a
+#' filepath and tries to return a data.frame.
+#' A data.frame argument is written to the specified
+#' filepath. Typically, \code{quote} and \code{row.names}
+#' are FALSE and \code{na} is ".".  When reading, white
+#' space and empty strings are treated as NA, and \code{strip.white}
+#' is TRUE. When writing, values with commas or
+#' double-quotes are double-quoted (and embedded double-quotes are doubled).
 #'  
 #' @param x object
 #' @param ... passed arguments
@@ -20,19 +29,46 @@ as.csv <- function(x,...)UseMethod('as.csv')
 #' Treat a character string as a CSV filename.
 #' 
 #' If x is character, is length one, and is a path to a file, an attempt is made to read the file.  
-#' @inheritParams as.csv
-#' @param as.is passed to read.csv
-#' @param na.strings passed to read.csv
-#' @param strip.white passed to read.csv
-#' @param check.names passed to read.csv
+#' @param x character file path
+#' @param as.is passed to \code{\link{read.csv}}
+#' @param na.strings passed to \code{\link{read.csv}}
+#' @param strip.white passed to \code{\link{read.csv}}
+#' @param check.names passed to \code{\link{read.csv}}
+#' @param source whether to assign x as the source attribute of the return value
+#' @param ... passed to \code{\link{read.csv}} if accepted by \code{\link{read.table}}
 #' @return data.frame, with attribute 'source' set to x
 #' @family as.csv
 #' @export
-as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.white=TRUE,check.names=FALSE,...){
+as.csv.character <- function(
+  x,
+  as.is=TRUE,
+  na.strings=c('','\\s','.','NA'),
+  strip.white=TRUE,
+  check.names=FALSE,
+  source = getOption('csv_source', TRUE),
+  ...
+){
+  stopifnot(is.logical(source))
+  stopifnot(length(source) == 1)
   stopifnot(length(x)==1)
   stopifnot(file.exists(x))
-  y <- utils::read.csv(x,as.is=as.is,na.strings=na.strings,strip.white=strip.white,check.names=check.names,...)
-  attr(y,'source') <- x
+  args <- list(...)
+  form <- names(formals(utils::read.csv))
+  args <- args[names(args) %in% form]
+  y <- do.call(
+    utils::read.csv,
+    c(
+      list(
+        x,
+        as.is=as.is,
+        na.strings=na.strings,
+        strip.white=strip.white,
+        check.names=check.names
+      ),
+      args
+    )
+  )
+  if(source) attr(y,'source') <- x
   y
 }
 
@@ -40,12 +76,13 @@ as.csv.character <- function(x,as.is=TRUE,na.strings=c('','\\s','.','NA'),strip.
 #' 
 #' Saves a data.frame as CSV, using selected conventions.
 #' 
-#' @inheritParams as.csv
-#' @param file passed to write.csv
-#' @param na passed to write.csv
-#' @param quote passed to write.csv
+#' @param x data.frame
+#' @param file passed to \code{\link{write.csv}}
+#' @param na passed to \code{\link{write.csv}}
+#' @param quote passed to \code{\link{write.csv}}
 #' @param auto double-quote column names and row values with embedded commas or double-quotes; the latter are escaped by doubling them
-#' @param row.names passed to write.csv
+#' @param row.names passed to \code{\link{write.csv}}
+#' @param ... passed to \code{\link{write.csv}} if accepted by \code{\link{write.table}}
 #' @return invisible data.frame (x)
 #' @export
 #' @family as.csv
@@ -78,7 +115,16 @@ as.csv.data.frame <- function(x, file, na='.', quote=FALSE, auto=!quote, row.nam
   )
   if(auto)x[] <- lapply(x, autoquote)
   if(auto)names(x) <- autoquote(names(x))
-  utils::write.csv(x,file=file,na=na,quote=quote,row.names=row.names,...)
+  args <- list(...)
+  form <- names(formals(utils::write.csv))
+  args <- args[names(args) %in% form]
+  do.call(
+    utils::write.csv,
+    c(
+      list(x,file=file,na=na,quote=quote,row.names=row.names),
+      args
+    )
+  )
   invisible(x)
 }
 

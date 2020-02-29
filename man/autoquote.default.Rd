@@ -15,7 +15,10 @@
 Autoquote default.  Returns its argument.
 }
 \seealso{
-Other autoquote: \code{\link{autoquote.character}},
-  \code{\link{autoquote.factor}}, \code{\link{autoquote}}
+Other autoquote: 
+\code{\link{autoquote.character}()},
+\code{\link{autoquote.factor}()},
+\code{\link{autoquote}()}
 }
+\concept{autoquote}
 \keyword{internal}

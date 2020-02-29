@@ -4,21 +4,30 @@
 \alias{as.csv.character}
 \title{Treat Character as CSV filename.}
 \usage{
-\method{as.csv}{character}(x, as.is = TRUE, na.strings = c("", "\\\\s", ".",
-  "NA"), strip.white = TRUE, check.names = FALSE, ...)
+\method{as.csv}{character}(
+  x,
+  as.is = TRUE,
+  na.strings = c("", "\\\\s", ".", "NA"),
+  strip.white = TRUE,
+  check.names = FALSE,
+  source = getOption("csv_source", TRUE),
+  ...
+)
 }
 \arguments{
-\item{x}{object}
+\item{x}{character file path}
 
-\item{as.is}{passed to read.csv}
+\item{as.is}{passed to \code{\link{read.csv}}}
 
-\item{na.strings}{passed to read.csv}
+\item{na.strings}{passed to \code{\link{read.csv}}}
 
-\item{strip.white}{passed to read.csv}
+\item{strip.white}{passed to \code{\link{read.csv}}}
 
-\item{check.names}{passed to read.csv}
+\item{check.names}{passed to \code{\link{read.csv}}}
 
-\item{...}{passed arguments}
+\item{source}{whether to assign x as the source attribute of the return value}
+
+\item{...}{passed to \code{\link{read.csv}} if accepted by \code{\link{read.table}}}
 }
 \value{
 data.frame, with attribute 'source' set to x
@@ -30,6 +39,8 @@ Treat a character string as a CSV filename.
 If x is character, is length one, and is a path to a file, an attempt is made to read the file.
 }
 \seealso{
-Other as.csv: \code{\link{as.csv.data.frame}},
-  \code{\link{as.csv}}
+Other as.csv: 
+\code{\link{as.csv.data.frame}()},
+\code{\link{as.csv}()}
 }
+\concept{as.csv}

@@ -15,8 +15,10 @@ autoquote(x, ...)
 Autoquote.  Generic, with default, character, and factor methods.
 }
 \seealso{
-Other autoquote: \code{\link{autoquote.character}},
-  \code{\link{autoquote.default}},
-  \code{\link{autoquote.factor}}
+Other autoquote: 
+\code{\link{autoquote.character}()},
+\code{\link{autoquote.default}()},
+\code{\link{autoquote.factor}()}
 }
+\concept{autoquote}
 \keyword{internal}

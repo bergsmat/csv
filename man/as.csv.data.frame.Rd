@@ -4,23 +4,22 @@
 \alias{as.csv.data.frame}
 \title{Save a Data Frame as CSV.}
 \usage{
-\method{as.csv}{data.frame}(x, file, na = ".", quote = FALSE,
-  auto = !quote, row.names = FALSE, ...)
+\method{as.csv}{data.frame}(x, file, na = ".", quote = FALSE, auto = !quote, row.names = FALSE, ...)
 }
 \arguments{
-\item{x}{object}
+\item{x}{data.frame}
 
-\item{file}{passed to write.csv}
+\item{file}{passed to \code{\link{write.csv}}}
 
-\item{na}{passed to write.csv}
+\item{na}{passed to \code{\link{write.csv}}}
 
-\item{quote}{passed to write.csv}
+\item{quote}{passed to \code{\link{write.csv}}}
 
 \item{auto}{double-quote column names and row values with embedded commas or double-quotes; the latter are escaped by doubling them}
 
-\item{row.names}{passed to write.csv}
+\item{row.names}{passed to \code{\link{write.csv}}}
 
-\item{...}{passed arguments}
+\item{...}{passed to \code{\link{write.csv}} if accepted by \code{\link{write.table}}}
 }
 \value{
 invisible data.frame (x)
@@ -44,6 +43,8 @@ y
 stopifnot(identical(x,y))
 }
 \seealso{
-Other as.csv: \code{\link{as.csv.character}},
-  \code{\link{as.csv}}
+Other as.csv: 
+\code{\link{as.csv.character}()},
+\code{\link{as.csv}()}
 }
+\concept{as.csv}

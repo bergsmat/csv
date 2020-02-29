@@ -15,7 +15,10 @@
 Autoquote character.  Quotes levels with commas or double quotes; the latter are doubled.
 }
 \seealso{
-Other autoquote: \code{\link{autoquote.character}},
-  \code{\link{autoquote.default}}, \code{\link{autoquote}}
+Other autoquote: 
+\code{\link{autoquote.character}()},
+\code{\link{autoquote.default}()},
+\code{\link{autoquote}()}
 }
+\concept{autoquote}
 \keyword{internal}
