@@ -1,7 +1,7 @@
 Package: csv
 Type: Package
 Title: Read and Write CSV Files with Selected Conventions
-Version: 0.5.4
+Version: 0.5.5
 Author: Tim Bergsma
 Maintainer: Tim Bergsma <bergsmat@gmail.com>
 Description: Reads and writes CSV with selected conventions.

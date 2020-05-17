@@ -89,6 +89,7 @@ as.csv.character <- function(
 #' @examples 
 #' x <- data.frame(
 #'   check.names = FALSE,
+#'   stringsAsFactors = TRUE,
 #'   person = 1:3, 
 #'   `name, suffix` = c("Bill Smith", 'Joseph "Joe" Hancock', "Mary Laguire, DDS")
 #' )
