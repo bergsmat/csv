@@ -147,7 +147,9 @@ has_comma <- function(x){
 }
 .autoquote <- function(x,...){
   hasComma <- stri_detect_fixed(x, ',')
+  hasComma[is.na(hasComma)] <- FALSE
   hasQuote <- stri_detect_fixed(x, '"')
+  hasQuote[is.na(hasQuote)] <- FALSE
   mustQuote <- hasComma | hasQuote
   x[hasQuote] <- gsub('"','""', x[hasQuote])
   x[mustQuote] <- paste0('"',x[mustQuote],'"')
