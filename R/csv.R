@@ -53,7 +53,7 @@ as.csv.character <- function(
   stopifnot(length(x)==1)
   stopifnot(file.exists(x))
   args <- list(...)
-  form <- names(formals(utils::read.csv))
+  form <- names(formals(utils::read.table))
   args <- args[names(args) %in% form]
   y <- do.call(
     utils::read.csv,
