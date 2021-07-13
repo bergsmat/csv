@@ -85,7 +85,7 @@ as.csv.character <- function(
 #' @param ... passed to \code{\link{write.csv}} if accepted by \code{\link{write.table}}
 #' @return invisible data.frame (x)
 #' @export
-#' @import dplyr
+#' @import data.table
 #' @importFrom stringi stri_detect_fixed
 #' @family as.csv
 #' @examples 
@@ -115,7 +115,7 @@ as.csv.data.frame <- function(x, file, na='.', quote=FALSE, auto=!quote, row.nam
   }
   # dup <- x[duplicated(x),,drop = FALSE]
   # dup <- data.frame(dup)
-  dup <- dup_at(x)
+  dup <- anyDuplicated(as.data.table(x)) #dup_at(x)
   if(dup > 0){
     warning(
       'found duplicate(s) at record ',dup, ' e.g.:\n',
@@ -159,25 +159,25 @@ has_comma <- function(x){
 # for two data.frames and an i valid on x, 
 # where y is distinct(x), 
 # either i and i-1 both match, both mismatch, or split.
-dfmatch <- function(x,y)isTRUE(all_equal(x,y,ignore_row_order = FALSE))
-continuity <- function(x, y, i){
-  if(i > nrow(x)) stop('i greater than nrow(x)')
-  if(i-1 > nrow(y)) return(1)
-  if(i > nrow(y)){
-    if(dfmatch(x[i-1,], y[i-1,])){
-      return(0)
-    } else{
-      return(1)
-    }
-  }
-  # now i and i-1 valid on both
-  a <- dfmatch(x[i-1,], y[i-1,])
-  b <- dfmatch(x[i,], y[i,])
-  if(a & b) return(-1)
-  if(!a & !b) return(1)
-  # now only one of these matches, likely a
-  return(0)
-}
+# dfmatch <- function(x,y)isTRUE(all_equal(x,y,ignore_row_order = FALSE))
+# continuity <- function(x, y, i){
+#   if(i > nrow(x)) stop('i greater than nrow(x)')
+#   if(i-1 > nrow(y)) return(1)
+#   if(i > nrow(y)){
+#     if(dfmatch(x[i-1,], y[i-1,])){
+#       return(0)
+#     } else{
+#       return(1)
+#     }
+#   }
+#   # now i and i-1 valid on both
+#   a <- dfmatch(x[i-1,], y[i-1,])
+#   b <- dfmatch(x[i,], y[i,])
+#   if(a & b) return(-1)
+#   if(!a & !b) return(1)
+#   # now only one of these matches, likely a
+#   return(0)
+# }
 # firstDifference <- function(x, y, i = 2, lo = 2, hi = nrow(x), ...){
 #   stopifnot(nrow(y) < nrow(x))
 #   # now y i.e. distinct x must have at least 1 record, and x at least 2
@@ -190,29 +190,29 @@ continuity <- function(x, y, i){
 #   i <- can[[ceiling(length(can)/2)]]
 #   return(firstDifference(x, y, i = i, lo = lo, hi = hi ))
 # }
-firstDifference <- function(x, y, i = 2, lo = 2, hi = nrow(x), ...){
-  stopifnot(nrow(y) < nrow(x))
-  # now y i.e. distinct x must have at least 1 record, and x at least 2
-  res <- continuity(x, y, i)
-  stopifnot(res %in% -1:1)
-  while(res != 0){
-    # cat('i =',i,'\n')
-    if(res == -1) lo = i + 1
-    if(res ==  1) hi = i - 1 
-    can <- seq(from = lo, to = hi)
-    i <- can[[ceiling(length(can)/2)]]
-    res <- continuity(x, y, i)
-    stopifnot(res %in% -1:1)
-  }
-  # now res is 0 with current value of i
-  return(i)
-}
+# firstDifference <- function(x, y, i = 2, lo = 2, hi = nrow(x), ...){
+#   stopifnot(nrow(y) < nrow(x))
+#   # now y i.e. distinct x must have at least 1 record, and x at least 2
+#   res <- continuity(x, y, i)
+#   stopifnot(res %in% -1:1)
+#   while(res != 0){
+#     # cat('i =',i,'\n')
+#     if(res == -1) lo = i + 1
+#     if(res ==  1) hi = i - 1 
+#     can <- seq(from = lo, to = hi)
+#     i <- can[[ceiling(length(can)/2)]]
+#     res <- continuity(x, y, i)
+#     stopifnot(res %in% -1:1)
+#   }
+#   # now res is 0 with current value of i
+#   return(i)
+# }
 
-dup_at <- function(x){
-  y <- distinct(x)
-  if(nrow(y) == nrow(x)) return(0)
-  return(firstDifference(x, y))
-}
+# dup_at <- function(x){
+#   y <- distinct(x)
+#   if(nrow(y) == nrow(x)) return(0)
+#   return(firstDifference(x, y))
+# }
 
 #' Autoquote
 #' 
