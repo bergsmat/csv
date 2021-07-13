@@ -128,7 +128,7 @@ as.csv.data.frame <- function(x, file, na='.', quote=FALSE, auto=!quote, row.nam
   if(auto)x[] <- lapply(x, autoquote)
   if(auto)names(x) <- autoquote(names(x))
   args <- list(...)
-  form <- names(formals(utils::write.csv))
+  form <- names(formals(utils::write.table))
   args <- args[names(args) %in% form]
   do.call(
     utils::write.csv,

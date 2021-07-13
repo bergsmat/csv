@@ -1,13 +1,12 @@
 Package: csv
 Type: Package
 Title: Read and Write CSV Files with Selected Conventions
-Version: 0.5.9
+Version: 0.6.0
 Author: Tim Bergsma
 Maintainer: Tim Bergsma <bergsmat@gmail.com>
 Description: Reads and writes CSV with selected conventions.
  Uses the same generic function for reading and writing to promote consistent formats.
 License: GPL-3
-LazyData: TRUE
 Imports: data.table, stringi
 Suggests:
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
