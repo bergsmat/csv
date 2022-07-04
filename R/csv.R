@@ -226,13 +226,13 @@ autoquote <- function(x,...)UseMethod('autoquote')
 
 #' Autoquote Default
 #' 
-#' Autoquote default.  Returns its argument.
+#' Autoquote default.  Coerces to character and autoquotes.
 #' @family autoquote
 #' @export
 #' @keywords internal
 #' @param x object
 #' @param ... passed arguments
-autoquote.default <- function(x,...)x
+autoquote.default <- function(x,...).autoquote(as.character(x))
 
 
 #' Autoquote Character
@@ -248,7 +248,7 @@ autoquote.character <- function(x,...).autoquote(x,...)
 
 #' Autoquote Factor
 #' 
-#' Autoquote character.  Quotes levels with commas or double quotes; the latter are doubled.
+#' Autoquote factor.  Quotes levels with commas or double quotes; the latter are doubled.
 #' @family autoquote
 #' @export
 #' @keywords internal
